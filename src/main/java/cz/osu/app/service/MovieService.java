@@ -51,11 +51,11 @@ public class MovieService {
 
     public List<Genre> findAllGenres() {
 
-        return new ArrayList<>(genreRepository.findAll());
+        return genreRepository.findAll();
     }
 
     public List<Movie> findAllMovies() {
 
-        return new ArrayList<>(movieRepository.findAll());
+        return movieRepository.findAll();
     }
 }

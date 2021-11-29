@@ -43,16 +43,16 @@ public class ReviewService {
 
     public List<User> findAllUsers() {
 
-        return new ArrayList<>(userRepository.findAll());
+        return userRepository.findAll();
     }
 
     public List<Movie> findAllMovies() {
 
-        return new ArrayList<>(movieRepository.findAll());
+        return movieRepository.findAll();
     }
 
     public List<Review> findAllReviews() {
 
-        return new ArrayList<>(reviewRepository.findAll());
+        return reviewRepository.findAll();
     }
 }

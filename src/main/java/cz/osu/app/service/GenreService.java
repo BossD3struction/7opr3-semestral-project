@@ -16,7 +16,7 @@ public class GenreService {
 
     public List<Genre> findAllGenres() {
 
-        return new ArrayList<>(genreRepository.findAll());
+        return genreRepository.findAll();
     }
 
     public void save(Genre genre) {

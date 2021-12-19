@@ -47,7 +47,7 @@ public class Movie {
     @Getter
     @Setter
     @NonNull
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.PERSIST)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
             name = "Movie_has_Genre",
             joinColumns = @JoinColumn(name = "pk_fk_movie_id", referencedColumnName = "pk_movie_id"),

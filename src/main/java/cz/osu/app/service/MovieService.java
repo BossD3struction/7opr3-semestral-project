@@ -7,7 +7,6 @@ import cz.osu.app.repository.MovieRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -19,7 +18,6 @@ public class MovieService {
     private final GenreRepository genreRepository;
 
     public Genre getGenre(long genreId) {
-
         return findAllGenres().stream()
                 .filter((q) -> q.getId() == genreId)
                 .findFirst()
@@ -27,7 +25,6 @@ public class MovieService {
     }
 
     public Movie getMovie(long movieId) {
-
         return findAllMovies().stream()
                 .filter((q) -> q.getId() == movieId)
                 .findFirst()
@@ -35,27 +32,26 @@ public class MovieService {
     }
 
     public void save(Movie movie) {
-
         movieRepository.save(movie);
     }
 
-    public Optional<Movie> findById(long id) {
+    public void deleteById(long movieId) {
+        movieRepository.deleteById(movieId);
+    }
 
+    public Optional<Movie> findById(long id) {
         return movieRepository.findById(id);
     }
 
     public List<Genre> findByMovies(Movie movie) {
-
         return genreRepository.findByMovies(movie);
     }
 
     public List<Genre> findAllGenres() {
-
         return genreRepository.findAll();
     }
 
     public List<Movie> findAllMovies() {
-
         return movieRepository.findAll();
     }
 }

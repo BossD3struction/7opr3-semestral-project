@@ -1,5 +1,6 @@
 package cz.osu.app.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Genre {
 
     @Getter
     @Setter
+    @JsonBackReference
     @ManyToMany(fetch = FetchType.LAZY, mappedBy = "genres")
     private Collection<Movie> movies;
 

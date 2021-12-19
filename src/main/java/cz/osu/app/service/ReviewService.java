@@ -9,8 +9,8 @@ import cz.osu.app.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,7 +21,6 @@ public class ReviewService {
     private final MovieRepository movieRepository;
 
     public User getUser(long userId) {
-
         return findAllUsers().stream()
                 .filter((q) -> q.getId() == userId)
                 .findFirst()
@@ -29,7 +28,6 @@ public class ReviewService {
     }
 
     public Movie getMovie(long movieId) {
-
         return findAllMovies().stream()
                 .filter((q) -> q.getId() == movieId)
                 .findFirst()
@@ -37,22 +35,26 @@ public class ReviewService {
     }
 
     public void save(Review review) {
-
         reviewRepository.save(review);
     }
 
-    public List<User> findAllUsers() {
+    public void deleteById(long reviewId) {
+        reviewRepository.deleteById(reviewId);
+    }
 
+    public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
     public List<Movie> findAllMovies() {
-
         return movieRepository.findAll();
     }
 
     public List<Review> findAllReviews() {
-
         return reviewRepository.findAll();
+    }
+
+    public Optional<Review> findById(long id) {
+        return reviewRepository.findById(id);
     }
 }

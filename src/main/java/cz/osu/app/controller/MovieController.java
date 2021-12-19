@@ -1,73 +1,43 @@
 package cz.osu.app.controller;
 
-import cz.osu.app.model.Genre;
 import cz.osu.app.model.Movie;
 import cz.osu.app.service.MovieService;
 import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
-@Controller
+@RestController
 @AllArgsConstructor
 public class MovieController {
 
     private final MovieService service;
 
     @GetMapping("/movie/list")
-    public String getMovieList(Model model) {
-
-        List<Movie> movies = service.findAllMovies();
-        model.addAttribute("movies", movies);
-
-        return "movie/list";
-    }
-
-    @GetMapping("/movie/create")
-    public String getCreate(Model model) {
-
-        List<Genre> genres = service.findAllGenres();
-        model.addAttribute("genres", genres);
-
-        return "movie/create";
-    }
-
-    @GetMapping("/movie/{id}/genres")
-    public String getGenres(Model model, @PathVariable Long id) {
-
-        Movie movie = service.getMovie(id);
-        model.addAttribute("movie", service.findById(id));
-        model.addAttribute("genres", service.findByMovies(movie));
-
-        return "movie/genres";
+    public List<Movie> getAllMovies() {
+        return service.findAllMovies();
     }
 
     @PostMapping("/movie/create")
-    public RedirectView postCreate(
-            @RequestParam("name") String name,
-            @RequestParam("year") int year,
-            @RequestParam("runningTime") int runningTime,
-            @RequestParam("bannerLink") String bannerLink,
-            @RequestParam("about") String about,
-            @RequestParam(name = "genreIdsChecked", required = false) List<Long> genreIdsChecked) {
+    public void createMovie(@RequestBody Movie movie) {
+        service.save(movie);
+    }
 
-        if (genreIdsChecked != null) {
-            List<Genre> genres = new ArrayList<>();
-            for (Long genreId : genreIdsChecked) {
-                genres.add(service.getGenre(genreId));
-            }
-            service.save(new Movie(name, year, runningTime, bannerLink, about, genres));
-        } else {
-            service.save(new Movie(name, year, runningTime, bannerLink, about));
-        }
+    @PutMapping("/movie/update/{movieId}")
+    public void updateMovie(@RequestBody Movie movie, @PathVariable("movieId") long movieId) {
+        Movie movieFromDb = service.findById(movieId).orElseThrow(() -> new IllegalArgumentException("Movie not found for this id :: " + movieId));
+        Objects.requireNonNull(movieFromDb).setName(movie.getName());
+        Objects.requireNonNull(movieFromDb).setYear(movie.getYear());
+        Objects.requireNonNull(movieFromDb).setRunningTime(movie.getRunningTime());
+        Objects.requireNonNull(movieFromDb).setBannerLink(movie.getBannerLink());
+        Objects.requireNonNull(movieFromDb).setAbout(movie.getAbout());
+        Objects.requireNonNull(movieFromDb).setGenres(movie.getGenres());
+        service.save(movieFromDb);
+    }
 
-        return new RedirectView("/movie/list");
+    @DeleteMapping("movie/delete/{movieId}")
+    public void deleteMovie(@PathVariable("movieId") long movieId) {
+        service.deleteById(movieId);
     }
 }

@@ -2,20 +2,24 @@ package cz.osu.app.services;
 
 import cz.osu.app.models.Genre;
 import cz.osu.app.models.Movie;
+import cz.osu.app.models.Review;
 import cz.osu.app.repositories.GenreRepository;
 import cz.osu.app.repositories.MovieRepository;
+import cz.osu.app.repositories.ReviewRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
 
+@SuppressWarnings("ClassCanBeRecord")
 @Service
 @AllArgsConstructor
 public class MovieService {
 
     private final MovieRepository movieRepository;
     private final GenreRepository genreRepository;
+    private final ReviewRepository reviewRepository;
 
     public Genre getGenre(long genreId) {
         return findAllGenres().stream()
@@ -53,5 +57,9 @@ public class MovieService {
 
     public List<Movie> findAllMovies() {
         return movieRepository.findAll();
+    }
+
+    public List<Review> findByMovie(Movie movie) {
+        return reviewRepository.findByMovie(movie);
     }
 }

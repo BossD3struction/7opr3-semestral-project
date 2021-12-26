@@ -9,7 +9,7 @@ import {MovieService} from '../movie.service';
 })
 export class MovieListComponent implements OnInit {
 
-  movies: Movie[] | undefined;
+  movies: Movie[] = [];
 
   constructor(private movieService: MovieService) {
   }

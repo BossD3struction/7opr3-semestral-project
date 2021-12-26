@@ -1,9 +1,11 @@
-export class Movie {
-  id: number | undefined;
-  name: string | undefined;
-  year: number | undefined;
-  runningTime: number | undefined;
-  bannerLink: string | undefined;
-  about: string | undefined;
-  genres: object | undefined;
+import {Genre} from "../genre/genre";
+
+export interface Movie {
+  id: number;
+  name: string;
+  year: number;
+  runningTime: number;
+  bannerLink: string;
+  about: string;
+  genres: Genre[];
 }

@@ -1,7 +1,7 @@
-export class User {
-  id: number | undefined;
-  nickname: string | undefined;
-  email: string | undefined;
-  password: string | undefined
-  isAdmin: boolean | undefined
+export interface User {
+  id: number;
+  nickname: string;
+  email: string;
+  password: string
+  admin: boolean
 }

@@ -7,19 +7,22 @@ import {UserListComponent} from './user/user-list/user-list.component';
 import {UserService} from './user/user.service';
 import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {MovieService} from "./movie/movie.service";
+import { ReviewListComponent } from './review/review-list/review-list.component';
+import {ReviewService} from "./review/review.service";
 
 @NgModule({
   declarations: [
     AppComponent,
     UserListComponent,
-    MovieListComponent
+    MovieListComponent,
+    ReviewListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [UserService, MovieService],
+  providers: [UserService, MovieService, ReviewService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

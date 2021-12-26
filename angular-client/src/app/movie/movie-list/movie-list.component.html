@@ -1,4 +1,4 @@
-<div class="card my-5">
+<!--<div class="card my-5">
   <div class="card-body">
     <table class="table table-bordered table-striped">
       <thead class="thead-dark">
@@ -18,11 +18,34 @@
         <td>{{ movie.name }}</td>
         <td>{{ movie.year }}</td>
         <td>{{ movie.runningTime }}</td>
-        <td>{{ movie.bannerLink }}</td>
+        <td>
+          &lt;!&ndash;suppress CheckEmptyScriptTag &ndash;&gt;
+          <img src="{{movie.bannerLink}}" class="img-thumbnail" alt="..."/>
+        </td>
         <td>{{ movie.about }}</td>
-        <td>{{ movie.genres }}</td>
+        <td>
+        <span *ngFor="let genre of movie.genres">
+          <span class="pe-3">{{genre.name}}</span>
+        </span>
+        </td>
       </tr>
       </tbody>
     </table>
+  </div>
+</div>-->
+<div class="card mb-3" *ngFor="let movie of movies">
+  <div class="row g-0">
+    <div class="col-md-4">
+      <!--suppress CheckEmptyScriptTag -->
+      <img src="{{movie.bannerLink}}" class="img-fluid rounded-start" alt="..."/>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body">
+        <h5 class="card-title">{{movie.name}}</h5>
+        <p class="card-text">{{movie.year}}, {{movie.runningTime}} min</p>
+        <p class="card-text">{{movie.about}}</p>
+        <a [routerLink]="['/movie',movie.id,'reviews']" class="btn btn-primary">Reviews</a>
+      </div>
+    </div>
   </div>
 </div>

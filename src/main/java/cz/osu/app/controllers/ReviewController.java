@@ -10,6 +10,7 @@ import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:4200")
 public class ReviewController {
 
     private final ReviewService service;

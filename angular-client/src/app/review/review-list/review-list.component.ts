@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Review} from "../review";
 import {ReviewService} from "../review.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-review-list',
@@ -11,11 +12,12 @@ export class ReviewListComponent implements OnInit {
 
   reviews: Review[] = [];
 
-  constructor(private reviewService: ReviewService) {
+  constructor(private reviewService: ReviewService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {
-    this.reviewService.findAll().subscribe(data => {
+    const id = this.route.snapshot.paramMap.get('id');
+    this.reviewService.findAll(id).subscribe(data => {
       this.reviews = data;
     });
   }

@@ -25,7 +25,7 @@ public class ReviewController {
         service.save(review);
     }
 
-    @PutMapping("/review/update/{reviewId}")
+    @PutMapping("/review/{reviewId}/update")
     public void updateReview(@RequestBody Review review, @PathVariable("reviewId") long reviewId) {
         Review reviewFromDb = service.findById(reviewId).orElseThrow(() -> new IllegalArgumentException("Review not found for this id :: " + reviewId));
         Objects.requireNonNull(reviewFromDb).setUser(review.getUser());
@@ -34,7 +34,7 @@ public class ReviewController {
         service.save(reviewFromDb);
     }
 
-    @DeleteMapping("review/delete/{reviewId}")
+    @DeleteMapping("review/{reviewId}/delete")
     public void deleteReview(@PathVariable("reviewId") long reviewId) {
         service.deleteById(reviewId);
     }

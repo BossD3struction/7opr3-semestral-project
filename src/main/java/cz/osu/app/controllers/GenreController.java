@@ -26,19 +26,19 @@ public class GenreController {
         service.save(genre);
     }
 
-    @PutMapping("/genre/update/{genreId}")
+    @PutMapping("/genre/{genreId}/update")
     public void updateGenre(@RequestBody Genre genre, @PathVariable("genreId") long genreId) {
         Genre genreFromDb = service.findById(genreId).orElseThrow(() -> new IllegalArgumentException("Genre not found for this id :: " + genreId));
         Objects.requireNonNull(genreFromDb).setName(genre.getName());
         service.save(genreFromDb);
     }
 
-    @DeleteMapping("genre/delete/{genreId}")
+    @DeleteMapping("genre/{genreId}/delete")
     public void deleteGenre(@PathVariable("genreId") long genreId) {
         service.deleteById(genreId);
     }
 
-    @GetMapping("/genre/list/{genreId}")
+    @GetMapping("/genre/{genreId}")
     public Optional<Genre> getGenreById(@PathVariable("genreId") long genreId) {
         return service.findById(genreId);
     }

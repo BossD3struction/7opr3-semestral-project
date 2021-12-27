@@ -21,18 +21,8 @@ public class MovieService {
     private final GenreRepository genreRepository;
     private final ReviewRepository reviewRepository;
 
-    public Genre getGenre(long genreId) {
-        return findAllGenres().stream()
-                .filter((q) -> q.getId() == genreId)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown genre id " + genreId));
-    }
-
-    public Movie getMovie(long movieId) {
-        return findAllMovies().stream()
-                .filter((q) -> q.getId() == movieId)
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown movie id " + movieId));
+    public List<Movie> findAllMovies() {
+        return movieRepository.findAll();
     }
 
     public void save(Movie movie) {
@@ -47,19 +37,30 @@ public class MovieService {
         return movieRepository.findById(id);
     }
 
-    public List<Genre> findByMovies(Movie movie) {
-        return genreRepository.findByMovies(movie);
+    public List<Review> findByMovie(Movie movie) {
+        return reviewRepository.findByMovie(movie);
+    }
+
+
+    public Movie getMovie(long movieId) {
+        return findAllMovies().stream()
+                .filter((q) -> q.getId() == movieId)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unknown movie id " + movieId));
+    }
+
+    public Genre getGenre(long genreId) {
+        return findAllGenres().stream()
+                .filter((q) -> q.getId() == genreId)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Unknown genre id " + genreId));
     }
 
     public List<Genre> findAllGenres() {
         return genreRepository.findAll();
     }
 
-    public List<Movie> findAllMovies() {
-        return movieRepository.findAll();
-    }
-
-    public List<Review> findByMovie(Movie movie) {
-        return reviewRepository.findByMovie(movie);
-    }
+    /*public List<Genre> findByMovies(Movie movie) {
+        return genreRepository.findByMovies(movie);
+    }*/
 }

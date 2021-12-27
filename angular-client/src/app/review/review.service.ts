@@ -6,14 +6,14 @@ import {Review} from "./review";
 @Injectable()
 export class ReviewService {
 
-  private readonly reviewsUrl: string;
+  private reviewsUrl!: string;
 
   constructor(private http: HttpClient) {
     //this.reviewsUrl = 'http://localhost:8080/movie/{movieId}/reviews';
-    this.reviewsUrl = 'http://localhost:8080/movie/{movieId}/reviews';
   }
 
-  public findAll(): Observable<Review[]> {
+  public findAll(id: string | null): Observable<Review[]> {
+    this.reviewsUrl = 'http://localhost:8080/movie/' + id + '/reviews';
     return this.http.get<Review[]>(this.reviewsUrl);
   }
 

@@ -21,6 +21,23 @@ public class ReviewService {
     private final UserRepository userRepository;
     private final MovieRepository movieRepository;
 
+    public List<Review> findAllReviews() {
+        return reviewRepository.findAll();
+    }
+
+    public void save(Review review) {
+        reviewRepository.save(review);
+    }
+
+    public void deleteById(long reviewId) {
+        reviewRepository.deleteById(reviewId);
+    }
+
+    public Optional<Review> findById(long id) {
+        return reviewRepository.findById(id);
+    }
+
+
     public User getUser(long userId) {
         return findAllUsers().stream()
                 .filter((q) -> q.getId() == userId)
@@ -35,27 +52,11 @@ public class ReviewService {
                 .orElseThrow(() -> new IllegalArgumentException("Unknown movie id " + movieId));
     }
 
-    public void save(Review review) {
-        reviewRepository.save(review);
-    }
-
-    public void deleteById(long reviewId) {
-        reviewRepository.deleteById(reviewId);
-    }
-
     public List<User> findAllUsers() {
         return userRepository.findAll();
     }
 
     public List<Movie> findAllMovies() {
         return movieRepository.findAll();
-    }
-
-    public List<Review> findAllReviews() {
-        return reviewRepository.findAll();
-    }
-
-    public Optional<Review> findById(long id) {
-        return reviewRepository.findById(id);
     }
 }

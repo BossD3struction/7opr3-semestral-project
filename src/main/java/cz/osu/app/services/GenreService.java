@@ -19,15 +19,15 @@ public class GenreService {
         return genreRepository.findAll();
     }
 
-    public Optional<Genre> findById(long id) {
-        return genreRepository.findById(id);
-    }
-
     public void save(Genre genre) {
         genreRepository.save(genre);
     }
 
     public void deleteById(long genreId) {
         genreRepository.deleteById(genreId);
+    }
+
+    public Optional<Genre> findById(long id) {
+        return genreRepository.findById(id);
     }
 }

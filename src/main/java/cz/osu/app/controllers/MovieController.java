@@ -1,6 +1,7 @@
 package cz.osu.app.controllers;
 
 import cz.osu.app.models.Movie;
+import cz.osu.app.models.Review;
 import cz.osu.app.services.MovieService;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -25,7 +26,7 @@ public class MovieController {
         service.save(movie);
     }
 
-    @PutMapping("/movie/update/{movieId}")
+    @PutMapping("/movie/{movieId}/update")
     public void updateMovie(@RequestBody Movie movie, @PathVariable("movieId") long movieId) {
         Movie movieFromDb = service.findById(movieId).orElseThrow(() -> new IllegalArgumentException("Movie not found for this id :: " + movieId));
         Objects.requireNonNull(movieFromDb).setName(movie.getName());
@@ -37,8 +38,14 @@ public class MovieController {
         service.save(movieFromDb);
     }
 
-    @DeleteMapping("movie/delete/{movieId}")
+    @DeleteMapping("movie/{movieId}/delete")
     public void deleteMovie(@PathVariable("movieId") long movieId) {
         service.deleteById(movieId);
+    }
+
+    @GetMapping("/movie/{movieId}/reviews")
+    public List<Review> getMovieReviews(@PathVariable("movieId") long movieId) {
+        Movie movie = service.findById(movieId).orElseThrow(() -> new IllegalArgumentException("Movie not found for this id :: " + movieId));
+        return service.findByMovie(movie);
     }
 }

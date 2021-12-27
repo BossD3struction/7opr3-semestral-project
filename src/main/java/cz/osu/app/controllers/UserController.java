@@ -25,7 +25,7 @@ public class UserController {
         service.save(user);
     }
 
-    @PutMapping("/user/update/{userId}")
+    @PutMapping("/user/{userId}/update")
     public void updateUser(@RequestBody User user, @PathVariable("userId") long userId) {
         User userFromDb = service.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found for this id :: " + userId));
         Objects.requireNonNull(userFromDb).setNickname(user.getNickname());
@@ -35,7 +35,7 @@ public class UserController {
         service.save(userFromDb);
     }
 
-    @DeleteMapping("user/delete/{userId}")
+    @DeleteMapping("user/{userId}/delete")
     public void deleteUser(@PathVariable("userId") long userId) {
         service.deleteById(userId);
     }

@@ -2,10 +2,19 @@
   <div class="row g-0">
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{review.user}}</h5>
+        <!--suppress TypeScriptValidateTypes -->
+        <h5 class="card-title" *ngFor="let user of review.user | keyvalue">
+          <span *ngIf="user.key == 'nickname'">
+            {{ user.value }}
+          </span>
+        </h5>
+        <!--<p class="card-text" *ngFor="let movie of review.movie | keyvalue">
+          <span *ngIf="movie.key == 'name'">
+            Movie: {{ movie.value | json }}
+          </span>
+        </p>-->
         <p class="card-text">{{review.text}}</p>
       </div>
     </div>
   </div>
 </div>
-<span>hello</span>

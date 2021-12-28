@@ -14,7 +14,7 @@ export class JwtClientService {
 
   // @ts-ignore
   public welcome(token) {
-    let tokenStr = 'Bearer ';
+    let tokenStr = 'Bearer ' + token;
     const headers = new HttpHeaders().set("Authorization", tokenStr);
     return this.http.get("http://localhost:8080/welcome", {headers, responseType: 'text' as 'json'});
   }

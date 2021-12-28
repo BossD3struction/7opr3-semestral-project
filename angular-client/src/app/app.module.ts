@@ -10,6 +10,7 @@ import {MovieService} from "./movie/movie.service";
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import {ReviewService} from "./review/review.service";
 import { SecurityComponent } from './security/security.component';
+import {JwtClientService} from "./jwt-client.service";
 
 @NgModule({
   declarations: [
@@ -24,7 +25,7 @@ import { SecurityComponent } from './security/security.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [UserService, MovieService, ReviewService],
+  providers: [UserService, MovieService, ReviewService, JwtClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

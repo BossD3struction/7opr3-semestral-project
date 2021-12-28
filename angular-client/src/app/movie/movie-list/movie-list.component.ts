@@ -9,16 +9,36 @@ import {MovieService} from '../movie.service';
 })
 export class MovieListComponent implements OnInit {
 
+  authRequest: any = {
+    "nickName": "ThisComesFromPostmanUPDATED",
+    "password": "helloThere85"
+  }
+
+  response: any;
+
   movies: Movie[] = [];
 
   constructor(private movieService: MovieService) {
   }
 
-  ngOnInit() {
-    this.movieService.findAll().subscribe(data => {
+  ngOnInit(): void {
+    this.getAccessToken(this.authRequest);
+    //this.movies
+    /*this.movieService.findAll().subscribe(data => {
       this.movies = data;
-    });
+    });*/
   }
 
+  // @ts-ignore
+  public getAccessToken(authRequest) {
+    let resp = this.movieService.generateToken(authRequest)
+    resp.subscribe(data => this.accessApi(data));
+  }
+
+  // @ts-ignore
+  public accessApi(token) {
+    let resp = this.movieService.listMovies(token);
+    resp.subscribe(data => this.response = data)
+  }
 }
 

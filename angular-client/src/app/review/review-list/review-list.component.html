@@ -8,13 +8,12 @@
             {{ user.value }}
           </span>
         </h5>
-        <!--<p class="card-text" *ngFor="let movie of review.movie | keyvalue">
-          <span *ngIf="movie.key == 'name'">
-            Movie: {{ movie.value | json }}
-          </span>
-        </p>-->
         <p class="card-text">{{review.text}}</p>
       </div>
     </div>
   </div>
+</div>
+
+<div *ngIf="reviews.length == 0" class="alert alert-danger" role="alert">
+  This is movie doesn't have any reviews, yet!
 </div>

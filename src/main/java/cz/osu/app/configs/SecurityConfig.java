@@ -43,42 +43,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }
 
-    /*@Bean
-    public PasswordEncoder passwordEncoder() {
-        return NoOpPasswordEncoder.getInstance();
-    }*/
-
-
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
-        //http.cors().disable();
+        http.cors()
+                .and()
+                .csrf().disable().authorizeRequests().antMatchers("/images/**").permitAll();
+
         http.cors()
                 .and().csrf().disable().authorizeRequests().antMatchers("/authenticate")
                 .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
                 .permitAll().anyRequest().authenticated()
                 .and().exceptionHandling().and().sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        /*http.cors()
-                .and().csrf().disable().authorizeRequests().antMatchers("/authenticate")
-                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll().anyRequest().authenticated()
-                .and().exceptionHandling().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);*/
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
-
-        /*http.csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated();*/
-
-        /*http.cors()
-                .and()
-                .csrf().disable().authorizeRequests()
-                .antMatchers("/**").permitAll()
-                .anyRequest().authenticated();*/
     }
 }
 

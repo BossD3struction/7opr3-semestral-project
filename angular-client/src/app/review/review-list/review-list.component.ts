@@ -26,9 +26,6 @@ export class ReviewListComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getAccessToken(this.authRequest);
-    /*this.reviewService.findAll(this.id).subscribe(data => {
-      this.reviews = data;
-    });*/
   }
 
   // @ts-ignore

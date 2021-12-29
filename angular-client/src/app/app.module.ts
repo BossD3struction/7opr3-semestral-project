@@ -9,7 +9,6 @@ import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {MovieService} from "./movie/movie.service";
 import { ReviewListComponent } from './review/review-list/review-list.component';
 import {ReviewService} from "./review/review.service";
-import { SecurityComponent } from './security/security.component';
 import {JwtClientService} from "./jwt-client.service";
 
 @NgModule({
@@ -17,8 +16,7 @@ import {JwtClientService} from "./jwt-client.service";
     AppComponent,
     UserListComponent,
     MovieListComponent,
-    ReviewListComponent,
-    SecurityComponent
+    ReviewListComponent
   ],
   imports: [
     BrowserModule,

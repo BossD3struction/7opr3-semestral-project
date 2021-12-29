@@ -16,6 +16,7 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Configuration
 @EnableWebSecurity
@@ -46,6 +47,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
+        // disable security for these api paths
+        http.csrf().disable().authorizeRequests().antMatchers("/genre/list").permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/movie/list").permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/review/list").permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/user/list").permitAll();
+        http.csrf().disable().authorizeRequests().antMatchers("/movie/{reviewId}/reviews").permitAll();
+        //http.csrf().disable().authorizeRequests().antMatchers("/genre/{genreId}").permitAll();
+
+        // disable security for static images
         http.cors()
                 .and()
                 .csrf().disable().authorizeRequests().antMatchers("/images/**").permitAll();

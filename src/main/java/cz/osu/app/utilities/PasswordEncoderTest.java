@@ -7,7 +7,7 @@ public class PasswordEncoderTest {
     public static void main(String[] args) {
 
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        String encodedPassword = passwordEncoder.encode("heslo");
+        String encodedPassword = passwordEncoder.encode("heslo_5");
         System.out.println(encodedPassword);
     }
 }

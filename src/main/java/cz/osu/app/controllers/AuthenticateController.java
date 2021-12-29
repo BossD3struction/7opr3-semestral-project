@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
-public class WelcomeController {
+public class AuthenticateController {
 
     @Autowired
     private JwtUtil jwtUtil;
@@ -17,10 +17,10 @@ public class WelcomeController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
-    @GetMapping("/welcome")
+    /*@GetMapping("/welcome")
     public String welcome() {
         return "Welcome to javatechie !!";
-    }
+    }*/
 
     @PostMapping("/authenticate")
     public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {

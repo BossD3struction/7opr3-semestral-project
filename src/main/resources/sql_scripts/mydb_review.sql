@@ -11,3 +11,7 @@ create table review
         foreign key (fk_movie_id) references movie (pk_movie_id)
 );
 
+INSERT INTO mydb.review (pk_review_id, fk_user_id, fk_movie_id, text) VALUES (4, 1, 11, 'docela dobry film');
+INSERT INTO mydb.review (pk_review_id, fk_user_id, fk_movie_id, text) VALUES (5, 5, 10, 'this review is coming from postman EVEN MORE');
+INSERT INTO mydb.review (pk_review_id, fk_user_id, fk_movie_id, text) VALUES (8, 3, 9, 'It is ok, could be worse');
+INSERT INTO mydb.review (pk_review_id, fk_user_id, fk_movie_id, text) VALUES (9, 2, 9, 'It is bad, could be better');

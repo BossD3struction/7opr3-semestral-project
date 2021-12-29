@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -38,8 +37,8 @@ public class GenreController {
         service.deleteById(genreId);
     }
 
-    @GetMapping("/genre/{genreId}")
+    /*@GetMapping("/genre/{genreId}")
     public Optional<Genre> getGenreById(@PathVariable("genreId") long genreId) {
         return service.findById(genreId);
-    }
+    }*/
 }

@@ -1,7 +1,7 @@
 package cz.osu.app.configs;
 
 import cz.osu.app.filters.JwtFilter;
-import cz.osu.app.services.CustomUserDetailsService;
+import cz.osu.app.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,6 +9,7 @@ import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -16,14 +17,14 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import org.springframework.web.bind.annotation.GetMapping;
 
 @Configuration
 @EnableWebSecurity
-public class SecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableGlobalMethodSecurity(securedEnabled = true)
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private CustomUserDetailsService userDetailsService;
+    private UserDetailsServiceImpl userDetailsService;
 
     @Autowired
     private JwtFilter jwtFilter;
@@ -47,25 +48,21 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(HttpSecurity http) throws Exception {
 
-        // disable security for these api paths
-        http.csrf().disable().authorizeRequests().antMatchers("/genre/list").permitAll();
-        http.csrf().disable().authorizeRequests().antMatchers("/movie/list").permitAll();
-        http.csrf().disable().authorizeRequests().antMatchers("/review/list").permitAll();
-        http.csrf().disable().authorizeRequests().antMatchers("/user/list").permitAll();
-        http.csrf().disable().authorizeRequests().antMatchers("/movie/{reviewId}/reviews").permitAll();
-        //http.csrf().disable().authorizeRequests().antMatchers("/genre/{genreId}").permitAll();
+        // disabled jwt token requirement for these api request paths
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/genre/list").permitAll()
+                .antMatchers("/movie/list").permitAll()
+                .antMatchers("/review/list").permitAll()
+                .antMatchers("/user/list").permitAll()
+                .antMatchers("/movie/{reviewId}/reviews").permitAll()
+                .antMatchers("/images/**").permitAll();
 
-        // disable security for static images
-        http.cors()
-                .and()
-                .csrf().disable().authorizeRequests().antMatchers("/images/**").permitAll();
-
-        http.cors()
-                .and().csrf().disable().authorizeRequests().antMatchers("/authenticate")
-                .permitAll().antMatchers(HttpMethod.OPTIONS, "/**")
-                .permitAll().anyRequest().authenticated()
-                .and().exceptionHandling().and().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/authenticate").permitAll()
+                .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+                .anyRequest().authenticated()
+                .and().exceptionHandling()
+                .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
         http.addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
     }

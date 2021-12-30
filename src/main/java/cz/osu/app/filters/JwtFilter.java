@@ -1,6 +1,6 @@
 package cz.osu.app.filters;
 
-import cz.osu.app.services.CustomUserDetailsService;
+import cz.osu.app.services.UserDetailsServiceImpl;
 import cz.osu.app.utilities.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -23,7 +23,7 @@ public class JwtFilter extends OncePerRequestFilter {
     private JwtUtil jwtUtil;
 
     @Autowired
-    private CustomUserDetailsService service;
+    private UserDetailsServiceImpl service;
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {

@@ -10,22 +10,23 @@ import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/review")
 @CrossOrigin(origins = "http://localhost:4200")
 public class ReviewController {
 
     private final ReviewService service;
 
-    @GetMapping("/review/list")
+    @GetMapping("/list")
     public List<Review> getReviews() {
         return service.findAllReviews();
     }
 
-    @PostMapping("/review/create")
+    @PostMapping("/create")
     public void createReview(@RequestBody Review review) {
         service.save(review);
     }
 
-    @PutMapping("/review/{reviewId}/update")
+    @PutMapping("/{reviewId}/update")
     public void updateReview(@RequestBody Review review, @PathVariable("reviewId") long reviewId) {
         Review reviewFromDb = service.findById(reviewId).orElseThrow(() -> new IllegalArgumentException("Review not found for this id :: " + reviewId));
         Objects.requireNonNull(reviewFromDb).setUser(review.getUser());
@@ -34,7 +35,7 @@ public class ReviewController {
         service.save(reviewFromDb);
     }
 
-    @DeleteMapping("review/{reviewId}/delete")
+    @DeleteMapping("/{reviewId}/delete")
     public void deleteReview(@PathVariable("reviewId") long reviewId) {
         service.deleteById(reviewId);
     }

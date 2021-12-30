@@ -3,6 +3,7 @@ package cz.osu.app.controllers;
 import cz.osu.app.models.User;
 import cz.osu.app.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,22 +11,23 @@ import java.util.Objects;
 
 @RestController
 @AllArgsConstructor
+@RequestMapping("/user")
 @CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
     private final UserService service;
 
-    @GetMapping("/user/list")
+    @GetMapping("/list")
     public List<User> getUsers() {
         return service.findAllUsers();
     }
 
-    @PostMapping("/user/create")
+    @PostMapping("/create")
     public void createUser(@RequestBody User user) {
         service.save(user);
     }
 
-    @PutMapping("/user/{userId}/update")
+    @PutMapping("/{userId}/update")
     public void updateUser(@RequestBody User user, @PathVariable("userId") long userId) {
         User userFromDb = service.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found for this id :: " + userId));
         Objects.requireNonNull(userFromDb).setNickname(user.getNickname());
@@ -35,7 +37,7 @@ public class UserController {
         service.save(userFromDb);
     }
 
-    @DeleteMapping("user/{userId}/delete")
+    @DeleteMapping("/{userId}/delete")
     public void deleteUser(@PathVariable("userId") long userId) {
         service.deleteById(userId);
     }

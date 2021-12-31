@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Movie} from '../movie';
 import {MovieService} from '../movie.service';
-import {JwtClientService} from "../../jwt-client.service";
+import {JwtClientService} from "../../jwt-client/jwt-client.service";
 
 @Component({
   selector: 'app-movie-list',

@@ -1,7 +1,7 @@
 package cz.osu.app.controllers;
 
-import cz.osu.app.entities.AuthRequest;
-import cz.osu.app.utilities.JwtUtil;
+import cz.osu.app.security.entities.AuthRequest;
+import cz.osu.app.security.jwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

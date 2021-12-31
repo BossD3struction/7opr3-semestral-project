@@ -1,7 +1,7 @@
-package cz.osu.app.filters;
+package cz.osu.app.security.jwt;
 
-import cz.osu.app.services.UserDetailsServiceImpl;
-import cz.osu.app.utilities.JwtUtil;
+import cz.osu.app.security.services.UserDetailsServiceImpl;
+import cz.osu.app.security.jwt.JwtUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;

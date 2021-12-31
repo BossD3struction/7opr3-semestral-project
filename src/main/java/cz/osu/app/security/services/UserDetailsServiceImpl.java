@@ -1,4 +1,4 @@
-package cz.osu.app.services;
+package cz.osu.app.security.services;
 
 import cz.osu.app.models.User;
 import cz.osu.app.repositories.UserRepository;
@@ -18,7 +18,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     public UserDetails loadUserByUsername(String nickname) throws UsernameNotFoundException {
 
         User user = repository.findByNickname(nickname);
-        //return new org.springframework.security.core.userdetails.User(user.getNickname(), user.getPassword(), new ArrayList<>());
         return UserDetailsImpl.build(user);
     }
 }

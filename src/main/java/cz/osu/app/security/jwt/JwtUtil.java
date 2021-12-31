@@ -1,4 +1,4 @@
-package cz.osu.app.utilities;
+package cz.osu.app.security.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

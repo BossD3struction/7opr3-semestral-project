@@ -3,7 +3,6 @@ package cz.osu.app.controllers;
 import cz.osu.app.models.User;
 import cz.osu.app.services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

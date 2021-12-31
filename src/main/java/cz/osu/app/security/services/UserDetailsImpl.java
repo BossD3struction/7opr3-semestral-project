@@ -1,4 +1,4 @@
-package cz.osu.app.services;
+package cz.osu.app.security.services;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.osu.app.models.User;

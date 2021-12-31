@@ -7,9 +7,9 @@ import {UserListComponent} from './user/user-list/user-list.component';
 import {UserService} from './user/user.service';
 import {MovieListComponent} from './movie/movie-list/movie-list.component';
 import {MovieService} from "./movie/movie.service";
-import { ReviewListComponent } from './review/review-list/review-list.component';
+import {ReviewListComponent} from './review/review-list/review-list.component';
 import {ReviewService} from "./review/review.service";
-import {JwtClientService} from "./jwt-client.service";
+import {JwtClientService} from "./jwt-client/jwt-client.service";
 
 @NgModule({
   declarations: [

@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Review} from "../review";
 import {ReviewService} from "../review.service";
 import {ActivatedRoute} from "@angular/router";
-import {JwtClientService} from "../../jwt-client.service";
+import {JwtClientService} from "../../jwt-client/jwt-client.service";
 
 @Component({
   selector: 'app-review-list',

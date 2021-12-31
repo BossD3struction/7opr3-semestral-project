@@ -1,7 +1,7 @@
 package cz.osu.app.configs;
 
-import cz.osu.app.filters.JwtFilter;
-import cz.osu.app.services.UserDetailsServiceImpl;
+import cz.osu.app.security.jwt.JwtFilter;
+import cz.osu.app.security.services.UserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

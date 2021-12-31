@@ -59,8 +59,4 @@ public class MovieService {
     public List<Genre> findAllGenres() {
         return genreRepository.findAll();
     }
-
-    /*public List<Genre> findByMovies(Movie movie) {
-        return genreRepository.findByMovies(movie);
-    }*/
 }

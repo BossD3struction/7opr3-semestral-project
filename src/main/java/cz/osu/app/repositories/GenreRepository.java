@@ -8,6 +8,4 @@ import org.springframework.stereotype.Repository;
 public interface GenreRepository extends JpaRepository<Genre, Long> {
 
     void deleteById(long genreId);
-
-    //List<Genre> findByMovies(Movie movie);
 }

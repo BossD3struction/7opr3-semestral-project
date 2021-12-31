@@ -56,6 +56,7 @@ public class Movie {
     private Collection<Genre> genres;
 
     public Movie(String name, int year, int runningTime, String bannerLink, String about) {
+
         this.name = name;
         this.year = year;
         this.runningTime = runningTime;

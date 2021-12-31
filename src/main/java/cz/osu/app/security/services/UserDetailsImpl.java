@@ -19,7 +19,7 @@ public class UserDetailsImpl implements UserDetails {
     @Getter
     private long id;
 
-    private String nickname;
+    private String username;
 
     @Getter
     private String email;
@@ -29,20 +29,14 @@ public class UserDetailsImpl implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
+
     public static UserDetailsImpl build(User user) {
         List<GrantedAuthority> authorities = new ArrayList<>();
 
-        if (user.isAdmin())
-            authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
-        else
-            authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
+        if (user.isAdmin()) authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
+        else authorities.add(new SimpleGrantedAuthority("ROLE_USER"));
 
-        return new UserDetailsImpl(
-                user.getId(),
-                user.getNickname(),
-                user.getEmail(),
-                user.getPassword(),
-                authorities);
+        return new UserDetailsImpl(user.getId(), user.getNickname(), user.getEmail(), user.getPassword(), authorities);
     }
 
     @Override
@@ -57,7 +51,7 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public String getUsername() {
-        return nickname;
+        return username;
     }
 
     @Override
@@ -82,10 +76,8 @@ public class UserDetailsImpl implements UserDetails {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o)
-            return true;
-        if (o == null || getClass() != o.getClass())
-            return false;
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
         UserDetailsImpl user = (UserDetailsImpl) o;
         return Objects.equals(id, user.id);
     }

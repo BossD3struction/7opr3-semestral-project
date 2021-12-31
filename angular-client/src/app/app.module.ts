@@ -10,10 +10,24 @@ import {MovieService} from "./movie/movie.service";
 import {ReviewListComponent} from './review/review-list/review-list.component';
 import {ReviewService} from "./review/review.service";
 import {JwtClientService} from "./jwt-client/jwt-client.service";
+import {LoginComponent} from "./login/login.component";
+import {RegisterComponent} from "./register/register.component";
+import {HomeComponent} from "./home/home.component";
+import {ProfileComponent} from "./profile/profile.component";
+import {BoardAdminComponent} from "./board-admin/board-admin.component";
+import {BoardUserComponent} from "./board-user/board-user.component";
+import {FormsModule} from "@angular/forms";
+import {authInterceptorProviders} from "./_helpers/auth.interceptor";
 
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
+    RegisterComponent,
+    HomeComponent,
+    ProfileComponent,
+    BoardAdminComponent,
+    BoardUserComponent,
     UserListComponent,
     MovieListComponent,
     ReviewListComponent
@@ -21,9 +35,10 @@ import {JwtClientService} from "./jwt-client/jwt-client.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
+    FormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, MovieService, ReviewService, JwtClientService],
+  providers: [UserService, MovieService, ReviewService, JwtClientService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

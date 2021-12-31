@@ -28,7 +28,7 @@ public class GenreController {
     }
 
     @PutMapping("/{genreId}/update")
-    @Secured(value = {"ROLE_ADMIN"})
+    //@Secured(value = {"ROLE_ADMIN"})
     public void updateGenre(@RequestBody Genre genre, @PathVariable("genreId") long genreId) {
         Genre genreFromDb = service.findById(genreId).orElseThrow(() -> new IllegalArgumentException("Genre not found for this id :: " + genreId));
         Objects.requireNonNull(genreFromDb).setName(genre.getName());

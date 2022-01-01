@@ -1,4 +1,4 @@
-import {Movie} from "../movie/movie";
+import {Movie} from "./movie";
 
 export class Genre {
   id: number | undefined;

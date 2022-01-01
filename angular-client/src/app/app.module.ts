@@ -3,20 +3,16 @@ import {NgModule} from '@angular/core';
 import {AppRoutingModule} from './app-routing.module';
 import {HttpClientModule} from "@angular/common/http";
 import {AppComponent} from './app.component';
-import {UserListComponent} from './user/user-list/user-list.component';
-import {UserService} from './user/user.service';
-import {MovieListComponent} from './movie/movie-list/movie-list.component';
-import {MovieService} from "./movie/movie.service";
-import {ReviewListComponent} from './review/review-list/review-list.component';
-import {ReviewService} from "./review/review.service";
-import {JwtClientService} from "./jwt-client/jwt-client.service";
 import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
-import {BoardAdminComponent} from "./board-admin/board-admin.component";
-import {BoardUserComponent} from "./board-user/board-user.component";
 import {FormsModule} from "@angular/forms";
+import {MoviesComponent} from './movies/movies.component';
+import {MovieService} from "./_services/movie.service";
+import {ReviewsComponent} from './reviews/reviews.component';
+import {ReviewService} from "./_services/review.service";
+import {UserService} from "./_services/user.service";
 import {authInterceptorProviders} from "./_helpers/auth.interceptor";
 
 @NgModule({
@@ -26,11 +22,8 @@ import {authInterceptorProviders} from "./_helpers/auth.interceptor";
     RegisterComponent,
     HomeComponent,
     ProfileComponent,
-    BoardAdminComponent,
-    BoardUserComponent,
-    UserListComponent,
-    MovieListComponent,
-    ReviewListComponent
+    MoviesComponent,
+    ReviewsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,7 +31,7 @@ import {authInterceptorProviders} from "./_helpers/auth.interceptor";
     FormsModule,
     HttpClientModule,
   ],
-  providers: [UserService, MovieService, ReviewService, JwtClientService, authInterceptorProviders],
+  providers: [UserService, MovieService, ReviewService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule {

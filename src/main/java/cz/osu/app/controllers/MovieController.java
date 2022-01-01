@@ -19,7 +19,7 @@ public class MovieController {
     private final MovieService service;
 
     @GetMapping("/list")
-    @Secured(value = {"ROLE_USER", "ROLE_ADMIN"})
+    //@Secured(value = {"ROLE_USER", "ROLE_ADMIN"})
     public List<Movie> getMovies() {
         return service.findAllMovies();
     }

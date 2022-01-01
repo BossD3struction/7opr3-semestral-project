@@ -1,4 +1,4 @@
-import {Genre} from "../genre/genre";
+import {Genre} from "./genre";
 
 export interface Movie {
   id: number;

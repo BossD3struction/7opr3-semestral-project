@@ -6,22 +6,17 @@ import {TokenStorageService} from "./_services/token-storage.service";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit{
+export class AppComponent implements OnInit {
 
   // @ts-ignore
-  roles: string[];
+  username: string;
   // @ts-ignore
-  nickname: string;
+  private roles: string[];
   isLoggedIn = false;
   showAdminBoard = false;
 
-  /*title: string;
-
-  constructor() {
-    this.title = 'Spring Boot - Angular Application';
-  }*/
-
-  constructor(private tokenStorageService: TokenStorageService) { }
+  constructor(private tokenStorageService: TokenStorageService) {
+  }
 
   // @ts-ignore
   ngOnInit(): void {
@@ -30,7 +25,7 @@ export class AppComponent implements OnInit{
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
-      this.nickname = user.nickname;
+      this.username = user.username;
       this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
     }
   }

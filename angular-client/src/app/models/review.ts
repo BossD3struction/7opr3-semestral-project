@@ -1,5 +1,5 @@
-import {User} from "../user/user";
-import {Movie} from "../movie/movie";
+import {User} from "./user";
+import {Movie} from "./movie";
 
 export interface Review {
   id: number;

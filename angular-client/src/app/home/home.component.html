@@ -1,5 +1,24 @@
-<div class="container">
-  <header class="jumbotron">
-    <p>{{ content }}</p>
-  </header>
+<div class="card-body">
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nickname</th>
+      <th scope="col">Email</th>
+      <th scope="col">Password</th>
+      <th scope="col">isAdmin</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+      <td>{{ user.id }}</td>
+      <td>{{ user.nickname }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.password }}</td>
+      <td>
+        {{true == user.admin ? 'Yes' : 'No' }}
+      </td>
+    </tr>
+    </tbody>
+  </table>
 </div>

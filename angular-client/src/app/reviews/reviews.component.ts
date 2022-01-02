@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Review} from "../models/review";
-import {ReviewService} from "../_services/review.service";
 import {ActivatedRoute} from "@angular/router";
+import {MovieService} from "../_services/movie.service";
 
 @Component({
   selector: 'app-reviews',
@@ -12,16 +12,15 @@ export class ReviewsComponent implements OnInit {
 
   // @ts-ignore
   content: string;
+  id: any;
   reviews: Review[] = [];
 
-  id: any;
-
-  constructor(private reviewService: ReviewService, private route: ActivatedRoute) {
+  constructor(private movieService: MovieService, private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
     this.id = this.route.snapshot.paramMap.get('id');
-    this.reviewService.listMovieReviews(this.id).subscribe(
+    this.movieService.listMovieReviews(this.id).subscribe(
       data => {
         this.reviews = data;
       }, err => {

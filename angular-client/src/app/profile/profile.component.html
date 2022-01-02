@@ -4,11 +4,6 @@
       <strong>{{ currentUser.username }}</strong>
     </h3>
     <hr/>
-    <!--<p>
-      <strong>Token:</strong>
-      {{ currentUser.accessToken }{{ currentUser.accessToken.substring(0, 20) }} ...
-      {{ currentUser.accessToken.substr(currentUser.accessToken.length - 20) }}
-    </p>-->
     <h5 class="mt-3">
       <strong>Email:</strong>
       {{ currentUser.email }}
@@ -23,5 +18,7 @@
 </div>
 
 <ng-template #loggedOut>
-  Please login.
+  <div class="mt-3 alert alert-warning text-center" role="alert">
+    Please login
+  </div>
 </ng-template>

@@ -11,6 +11,8 @@ export class HomeComponent implements OnInit {
 
   // @ts-ignore
   content: string;
+  currentUser: any;
+
   users: User[] = [];
 
   constructor(private userService: UserService) {

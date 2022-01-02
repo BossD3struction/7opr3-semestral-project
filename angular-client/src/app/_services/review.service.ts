@@ -1,17 +1,29 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Review} from "../models/review";
+import {Observable} from "rxjs";
+import {TokenStorageService} from "./token-storage.service";
 
-const API_URL = 'http://localhost:8080/movie/';
+const API_URL = 'http://localhost:8080/review/';
+
+const httpOptions = {
+  headers: new HttpHeaders({'Content-Type': 'application/json'})
+};
 
 @Injectable({providedIn: 'root'})
 export class ReviewService {
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private token: TokenStorageService) {
   }
 
-  public listMovieReviews(id: string): Observable<Review[]> {
-    return this.http.get<Review[]>(API_URL + id + '/reviews');
+  // @ts-ignore
+  public saveReview(review): Observable<any> {
+    let currentUser = this.token.getUser();
+    return this.http.post<Review>(API_URL + 'create/angular', {
+      userId: currentUser.id,
+      movieId: review.movieId,
+      text: review.text
+    }, httpOptions);
   }
+
 }

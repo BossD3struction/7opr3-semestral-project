@@ -82,14 +82,4 @@ public class AuthController {
         userRepository.save(user);
         return ResponseEntity.ok(new MessageResponse("User registered successfully!"));
     }
-
-    /*@PostMapping("/authenticate")
-    public String generateToken(@RequestBody AuthRequest authRequest) throws Exception {
-        try {
-            authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
-        } catch (Exception ex) {
-            throw new Exception("invalid nickname/password");
-        }
-        return jwtUtil.generateToken(authRequest.getUsername());
-    }*/
 }

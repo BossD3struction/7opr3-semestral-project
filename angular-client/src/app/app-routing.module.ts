@@ -6,12 +6,15 @@ import {RegisterComponent} from "./register/register.component";
 import {ProfileComponent} from "./profile/profile.component";
 import {MoviesComponent} from "./movies/movies.component";
 import {ReviewsComponent} from "./reviews/reviews.component";
+import {ManagementComponent} from "./management/management.component";
+import {AddReviewComponent} from "./add-review/add-review.component";
 
 const routes: Routes = [
-  //{path: 'users', component: UserListComponent},
   {path: 'home', component: HomeComponent},
   {path: 'movies', component: MoviesComponent},
   {path: 'movie/:id/reviews', component: ReviewsComponent},
+  {path: 'addReview', component: AddReviewComponent},
+  {path: 'management', component: ManagementComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},

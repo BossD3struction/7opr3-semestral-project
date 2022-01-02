@@ -1,0 +1,17 @@
+<div class="mt-3 col-md-12" *ngIf="currentUser; else loggedOut">
+  <div class="mt-3 col-md-12" *ngIf="currentUser.roles == 'ROLE_ADMIN'; else noPermission">
+    <p>management works!</p>
+  </div>
+</div>
+
+<ng-template #noPermission>
+  <div class="mt-3 alert alert-warning text-center" role="alert">
+    You don't have permissions
+  </div>
+</ng-template>
+
+<ng-template #loggedOut>
+  <div class="mt-3 alert alert-warning text-center" role="alert">
+    Please login
+  </div>
+</ng-template>

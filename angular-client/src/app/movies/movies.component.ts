@@ -9,6 +9,8 @@ import {MovieService} from "../_services/movie.service";
 })
 export class MoviesComponent implements OnInit {
 
+  currentUser: any;
+
   // @ts-ignore
   content: string;
   movies: Movie[] = []

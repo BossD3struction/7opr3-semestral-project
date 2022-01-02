@@ -23,12 +23,13 @@ public class GenreController {
     }
 
     @PostMapping("/create")
+    @Secured(value = {"ROLE_ADMIN"})
     public void createGenre(@RequestBody Genre genre) {
         service.save(genre);
     }
 
     @PutMapping("/{genreId}/update")
-    //@Secured(value = {"ROLE_ADMIN"})
+    @Secured(value = {"ROLE_ADMIN"})
     public void updateGenre(@RequestBody Genre genre, @PathVariable("genreId") long genreId) {
         Genre genreFromDb = service.findById(genreId).orElseThrow(() -> new IllegalArgumentException("Genre not found for this id :: " + genreId));
         Objects.requireNonNull(genreFromDb).setName(genre.getName());
@@ -36,6 +37,7 @@ public class GenreController {
     }
 
     @DeleteMapping("/{genreId}/delete")
+    @Secured(value = {"ROLE_ADMIN"})
     public void deleteGenre(@PathVariable("genreId") long genreId) {
         service.deleteById(genreId);
     }

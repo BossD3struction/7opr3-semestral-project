@@ -3,10 +3,12 @@ package cz.osu.app.controllers;
 import cz.osu.app.models.User;
 import cz.osu.app.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @RestController
 @AllArgsConstructor
@@ -22,11 +24,13 @@ public class UserController {
     }
 
     @PostMapping("/create")
+    @Secured(value = {"ROLE_ADMIN"})
     public void createUser(@RequestBody User user) {
         service.save(user);
     }
 
     @PutMapping("/{userId}/update")
+    @Secured(value = {"ROLE_ADMIN"})
     public void updateUser(@RequestBody User user, @PathVariable("userId") long userId) {
         User userFromDb = service.findById(userId).orElseThrow(() -> new IllegalArgumentException("User not found for this id :: " + userId));
         Objects.requireNonNull(userFromDb).setNickname(user.getNickname());
@@ -37,6 +41,7 @@ public class UserController {
     }
 
     @DeleteMapping("/{userId}/delete")
+    @Secured(value = {"ROLE_ADMIN"})
     public void deleteUser(@PathVariable("userId") long userId) {
         service.deleteById(userId);
     }

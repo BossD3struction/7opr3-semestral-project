@@ -14,6 +14,8 @@ import {ReviewsComponent} from './reviews/reviews.component';
 import {ReviewService} from "./_services/review.service";
 import {UserService} from "./_services/user.service";
 import {authInterceptorProviders} from "./_helpers/auth.interceptor";
+import {ManagementComponent} from './management/management.component';
+import {AddReviewComponent} from './add-review/add-review.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import {authInterceptorProviders} from "./_helpers/auth.interceptor";
     HomeComponent,
     ProfileComponent,
     MoviesComponent,
-    ReviewsComponent
+    ReviewsComponent,
+    ManagementComponent,
+    AddReviewComponent,
   ],
   imports: [
     BrowserModule,

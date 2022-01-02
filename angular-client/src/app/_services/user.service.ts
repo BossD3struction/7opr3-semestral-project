@@ -11,11 +11,8 @@ export class UserService {
   constructor(private http: HttpClient) {
   }
 
-  listUsers(): Observable<User[]> {
+  public listUsers(): Observable<User[]> {
     return this.http.get<User[]>(API_URL + 'list');
   }
 
-  /*public save(user: User) {
-    return this.http.post<User>(this.usersUrl, user);
-  }*/
 }

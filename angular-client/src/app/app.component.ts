@@ -13,7 +13,8 @@ export class AppComponent implements OnInit {
   // @ts-ignore
   private roles: string[];
   isLoggedIn = false;
-  showAdminBoard = false;
+  showManagementBoard = false;
+  showAddReviewBoard = false;
 
   constructor(private tokenStorageService: TokenStorageService) {
   }
@@ -26,7 +27,10 @@ export class AppComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.roles = user.roles;
       this.username = user.username;
-      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+      if (this.roles.includes('ROLE_ADMIN') || this.roles.includes('ROLE_USER')) {
+        this.showAddReviewBoard = true;
+      }
+      this.showManagementBoard = this.roles.includes('ROLE_ADMIN');
     }
   }
 

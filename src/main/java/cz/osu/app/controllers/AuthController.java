@@ -1,10 +1,10 @@
 package cz.osu.app.controllers;
 
 import cz.osu.app.models.User;
-import cz.osu.app.payload.request.LoginRequest;
-import cz.osu.app.payload.request.RegisterRequest;
-import cz.osu.app.payload.response.JwtResponse;
-import cz.osu.app.payload.response.MessageResponse;
+import cz.osu.app.payloads.requests.LoginRequest;
+import cz.osu.app.payloads.requests.RegisterRequest;
+import cz.osu.app.payloads.responses.JwtResponse;
+import cz.osu.app.payloads.responses.MessageResponse;
 import cz.osu.app.repositories.UserRepository;
 import cz.osu.app.security.jwt.JwtUtil;
 import cz.osu.app.security.services.UserDetailsImpl;

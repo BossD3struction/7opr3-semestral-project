@@ -1,4 +1,4 @@
-package cz.osu.app.payload.response;
+package cz.osu.app.payloads.responses;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

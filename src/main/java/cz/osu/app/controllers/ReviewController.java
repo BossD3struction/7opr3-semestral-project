@@ -3,25 +3,17 @@ package cz.osu.app.controllers;
 import cz.osu.app.models.Movie;
 import cz.osu.app.models.Review;
 import cz.osu.app.models.User;
-import cz.osu.app.payload.request.AddReviewRequest;
-import cz.osu.app.payload.request.LoginRequest;
-import cz.osu.app.payload.response.JwtResponse;
-import cz.osu.app.payload.response.MessageResponse;
-import cz.osu.app.security.services.UserDetailsImpl;
+import cz.osu.app.payloads.requests.AddReviewRequest;
+import cz.osu.app.payloads.responses.MessageResponse;
 import cz.osu.app.services.ReviewService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @RestController
 @AllArgsConstructor
@@ -48,13 +40,11 @@ public class ReviewController {
 
         User user = service.getUser(addReviewRequest.getUserId());
         Movie movie = service.getMovie(addReviewRequest.getMovieId());
-
         Review review = new Review(user, movie, addReviewRequest.getText());
-
         service.save(review);
+
         return ResponseEntity.ok(new MessageResponse("Review was saved successfully!"));
     }
-
 
     @PutMapping("/{reviewId}/update")
     @Secured(value = {"ROLE_ADMIN"})

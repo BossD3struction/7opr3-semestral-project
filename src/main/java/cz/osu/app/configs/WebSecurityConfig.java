@@ -53,7 +53,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/genre/list").permitAll()
                 .antMatchers("/movie/list").permitAll()
                 .antMatchers("/review/list").permitAll()
-                .antMatchers("/user/list").permitAll()
                 .antMatchers("/movie/{reviewId}/reviews").permitAll()
                 .antMatchers("/images/**").permitAll();
 

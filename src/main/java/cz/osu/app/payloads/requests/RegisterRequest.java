@@ -1,4 +1,4 @@
-package cz.osu.app.payload.request;
+package cz.osu.app.payloads.requests;
 
 import lombok.Getter;
 import lombok.Setter;

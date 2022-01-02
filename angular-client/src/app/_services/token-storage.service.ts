@@ -33,4 +33,5 @@ export class TokenStorageService {
     // @ts-ignore
     return JSON.parse(sessionStorage.getItem(USER_KEY));
   }
+
 }

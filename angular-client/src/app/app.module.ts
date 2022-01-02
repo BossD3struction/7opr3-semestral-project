@@ -7,7 +7,7 @@ import {LoginComponent} from "./login/login.component";
 import {RegisterComponent} from "./register/register.component";
 import {HomeComponent} from "./home/home.component";
 import {ProfileComponent} from "./profile/profile.component";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MoviesComponent} from './movies/movies.component';
 import {MovieService} from "./_services/movie.service";
 import {ReviewsComponent} from './reviews/reviews.component';
@@ -32,6 +32,7 @@ import {AddReviewComponent} from './add-review/add-review.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
   ],

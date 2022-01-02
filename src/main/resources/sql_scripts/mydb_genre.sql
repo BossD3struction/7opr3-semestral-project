@@ -13,5 +13,5 @@ INSERT INTO mydb.genre (pk_genre_id, name) VALUES (5, 'Romance');
 INSERT INTO mydb.genre (pk_genre_id, name) VALUES (6, 'Thriller');
 INSERT INTO mydb.genre (pk_genre_id, name) VALUES (7, 'Comedy');
 INSERT INTO mydb.genre (pk_genre_id, name) VALUES (8, 'Mystery');
-INSERT INTO mydb.genre (pk_genre_id, name) VALUES (10, 'tohleNeniDobryGenreTest');
-INSERT INTO mydb.genre (pk_genre_id, name) VALUES (12, 'test');
+INSERT INTO mydb.genre (pk_genre_id, name) VALUES (15, 'Sci-Fi');
+INSERT INTO mydb.genre (pk_genre_id, name) VALUES (18, 'Fantasy');
